@@ -1,0 +1,216 @@
+8: Sakila
+
+a) Tulosta DVD-elokuvien kielet (language) aakkosjärjestyksessä
+
+mysql> SELECT *FROM language ORDER BY name;
++-------------+----------+---------------------+
+| language_id | name     | last_update         |
++-------------+----------+---------------------+
+|           1 | English  | 2006-02-15 05:02:19 |
+|           5 | French   | 2006-02-15 05:02:19 |
+|           6 | German   | 2006-02-15 05:02:19 |
+|           2 | Italian  | 2006-02-15 05:02:19 |
+|           3 | Japanese | 2006-02-15 05:02:19 |
+|           4 | Mandarin | 2006-02-15 05:02:19 |
++-------------+----------+---------------------+
+
+
+b) Tulosta kaikkien niiden näyttelijöiden elokuvat, joiden sukunimi on Temple.
+
+mysql> SELECT last_name,title FROM actor JOIN film_actor ON actor.actor_id=film_actor.actor_id JOIN film ON film_actor.film_id=film.film_id WHERE last_name='Temple';
++-----------+-------------------------+
+| last_name | title                   |
++-----------+-------------------------+
+| TEMPLE    | ACADEMY DINOSAUR        |
+| TEMPLE    | ALABAMA DEVIL           |
+| TEMPLE    | BALLOON HOMEWARD        |
+| TEMPLE    | BEACH HEARTBREAKERS     |
+| TEMPLE    | BUTTERFLY CHOCOLAT      |
+| TEMPLE    | CARRIE BUNCH            |
+| TEMPLE    | CASUALTIES ENCINO       |
+| TEMPLE    | CONTACT ANONYMOUS       |
+| TEMPLE    | DROP WATERFRONT         |
+| TEMPLE    | EARLY HOME              |
+| TEMPLE    | ENGLISH BULWORTH        |
+| TEMPLE    | FELLOWSHIP AUTUMN       |
+| TEMPLE    | GILMORE BOILED          |
+| TEMPLE    | GUMP DATE               |
+| TEMPLE    | ICE CROSSING            |
+| TEMPLE    | INTERVIEW LIAISONS      |
+| TEMPLE    | JUMANJI BLADE           |
+| TEMPLE    | JUNGLE CLOSER           |
+| TEMPLE    | LAMBS CINCINATTI        |
+| TEMPLE    | LIAISONS SWEET          |
+| TEMPLE    | MICROCOSMOS PARADISE    |
+| TEMPLE    | MIGHTY LUCK             |
+| TEMPLE    | MILE MULAN              |
+| TEMPLE    | PRIMARY GLASS           |
+| TEMPLE    | REQUIEM TYCOON          |
+| TEMPLE    | RESURRECTION SILVERADO  |
+| TEMPLE    | VARSITY TRIP            |
+| TEMPLE    | VISION TORQUE           |
+| TEMPLE    | WASH HEAVENLY           |
+| TEMPLE    | WIZARD COLDBLOODED      |
+| TEMPLE    | BANG KWAI               |
+| TEMPLE    | BILL OTHERS             |
+| TEMPLE    | BREAKFAST GOLDFINGER    |
+| TEMPLE    | CANYON STOCK            |
+| TEMPLE    | CHASING FIGHT           |
+| TEMPLE    | CHITTY LOCK             |
+| TEMPLE    | CITIZEN SHREK           |
+| TEMPLE    | CLOSER BANG             |
+| TEMPLE    | COMFORTS RUSH           |
+| TEMPLE    | CONNECTION MICROCOSMOS  |
+| TEMPLE    | CRAZY HOME              |
+| TEMPLE    | CROSSROADS CASUALTIES   |
+| TEMPLE    | FROGMEN BREAKING        |
+| TEMPLE    | GHOST GROUNDHOG         |
+| TEMPLE    | GLORY TRACY             |
+| TEMPLE    | GOLD RIVER              |
+| TEMPLE    | INDIAN LOVE             |
+| TEMPLE    | NOVOCAINE FLIGHT        |
+| TEMPLE    | PELICAN COMFORTS        |
+| TEMPLE    | PLATOON INSTINCT        |
+| TEMPLE    | SANTA PARIS             |
+| TEMPLE    | SHAKESPEARE SADDLE      |
+| TEMPLE    | SLUMS DUCK              |
+| TEMPLE    | SMILE EARRING           |
+| TEMPLE    | TOWERS HURRICANE        |
+| TEMPLE    | TRAINSPOTTING STRANGERS |
+| TEMPLE    | TROOPERS METAL          |
+| TEMPLE    | UNCUT SUICIDES          |
+| TEMPLE    | VISION TORQUE           |
+| TEMPLE    | VOLCANO TEXAS           |
+| TEMPLE    | WRATH MILE              |
+| TEMPLE    | ATTACKS HATE            |
+| TEMPLE    | BLANKET BEVERLY         |
+| TEMPLE    | BUCKET BROTHERHOOD      |
+| TEMPLE    | BUTTERFLY CHOCOLAT      |
+| TEMPLE    | CAPER MOTIONS           |
+| TEMPLE    | CHICAGO NORTH           |
+| TEMPLE    | COAST RAINBOW           |
+| TEMPLE    | EVOLUTION ALTER         |
+| TEMPLE    | GATHERING CALENDAR      |
+| TEMPLE    | GILMORE BOILED          |
+| TEMPLE    | GRAPES FURY             |
+| TEMPLE    | HEAVYWEIGHTS BEAST      |
+| TEMPLE    | INSIDER ARIZONA         |
+| TEMPLE    | POLLOCK DELIVERANCE     |
+| TEMPLE    | RACER EGG               |
+| TEMPLE    | ROSES TREASURE          |
+| TEMPLE    | SLEUTH ORIENT           |
+| TEMPLE    | SPIKING ELEMENT         |
+| TEMPLE    | SPOILERS HELLFIGHTERS   |
+| TEMPLE    | STRAIGHT HOURS          |
+| TEMPLE    | VARSITY TRIP            |
+| TEMPLE    | WAIT CIDER              |
+| TEMPLE    | WARS PLUTO              |
+| TEMPLE    | AFRICAN EGG             |
+| TEMPLE    | BADMAN DAWN             |
+| TEMPLE    | BLANKET BEVERLY         |
+| TEMPLE    | CANDIDATE PERDITION     |
+| TEMPLE    | CAROL TEXAS             |
+| TEMPLE    | CHRISTMAS MOONSHINE     |
+| TEMPLE    | GALAXY SWEETHEARTS      |
+| TEMPLE    | HOCUS FRIDA             |
+| TEMPLE    | INSIDER ARIZONA         |
+| TEMPLE    | INTERVIEW LIAISONS      |
+| TEMPLE    | JADE BUNCH              |
+| TEMPLE    | LOVER TRUMAN            |
+| TEMPLE    | LOVERBOY ATTACKS        |
+| TEMPLE    | MADISON TRAP            |
+| TEMPLE    | RANDOM GO               |
+| TEMPLE    | TELEGRAPH VOYAGE        |
+| TEMPLE    | TROJAN TOMORROW         |
+| TEMPLE    | VIRGINIAN PLUTO         |
+| TEMPLE    | WARDROBE PHANTOM        |
+| TEMPLE    | WRONG BEHAVIOR          |
++-----------+-------------------------+
+
+c) Tulosta elokuvassa "Ghost Groundhog" näytelleet näyttelijät.
+
+mysql> SELECT first_name,last_name FROM actor JOIN film_actor ON actor.actor_id=film_actor.actor_id JOIN film ON film_actor.film_id=film.film_id WHERE title='Ghost Groundhog';
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| DAN        | HARRIS    |
+| KENNETH    | TORN      |
+| KEVIN      | GARLAND   |
+| RUSSELL    | TEMPLE    |
+| RENEE      | BALL      |
++------------+-----------+
+
+
+d) Montako kauhuelokuvaa ("Horror") tietokannassa on ?
+
+mysql> SELECT COUNT(*) FROM film JOIN film_category ON film.film_id=film_category.film_id JOIN category ON film_category.category_id=category.category_id WHERE name='Horror';
++----------+
+| COUNT(*) |
++----------+
+|       56 |
++----------+
+
+e) Tulosta kaikki kauhuelokuvat.
+
+mysql> SELECT title FROM film JOIN film_category ON film.film_id=film_category.film_id JOIN category ON film_category.category_id=category.category_id WHERE name='Horror';
++-----------------------------+
+| title                       |
++-----------------------------+
+| ACE GOLDFINGER              |
+| AFFAIR PREJUDICE            |
+| AIRPORT POLLOCK             |
+| ALABAMA DEVIL               |
+| ALI FOREVER                 |
+| ANALYZE HOOSIERS            |
+| ANYTHING SAVANNAH           |
+| ARABIA DOGMA                |
+| ARACHNOPHOBIA ROLLERCOASTER |
+| BEHAVIOR RUNAWAY            |
+| BOWFINGER GABLES            |
+| CARRIE BUNCH                |
+| COMMANDMENTS EXPRESS        |
+| DESERT POSEIDON             |
+| DRUMS DYNAMITE              |
+| EGYPT TENENBAUMS            |
+| ELEPHANT TROJAN             |
+| FAMILY SWEET                |
+| FIDELITY DEVIL              |
+| FREDDY STORM                |
+| GASLIGHT CRUSADE            |
+| HIGH ENCINO                 |
+| JAPANESE RUN                |
+| KARATE MOON                 |
+| KENTUCKIAN GIANT            |
+| LADY STAGE                  |
+| LOLA AGENT                  |
+| LOVE SUICIDES               |
+| MONTEREY LABYRINTH          |
+| MOTIONS DETAILS             |
+| PANIC CLUB                  |
+| PARIS WEEKEND               |
+| PATTON INTERVIEW            |
+| PULP BEVERLY                |
+| REAP UNFAITHFUL             |
+| REEF SALUTE                 |
+| ROCK INSTINCT               |
+| ROLLERCOASTER BRINGING      |
+| RULES HUMAN                 |
+| SIMON NORTH                 |
+| SINNERS ATLANTIS            |
+| SLEEPING SUSPECTS           |
+| SPIRIT FLINTSTONES          |
+| STRANGERS GRAFFITI          |
+| STREETCAR INTENTIONS        |
+| SWARM GOLD                  |
+| TARZAN VIDEOTAPE            |
+| TEMPLE ATTRACTION           |
+| TEXAS WATCH                 |
+| TRAIN BUNCH                 |
+| TREASURE COMMAND            |
+| UNDEFEATED DALMATIONS       |
+| WATERSHIP FRONTIER          |
+| WORLD LEATHERNECKS          |
+| YENTL IDAHO                 |
+| ZHIVAGO CORE                |
++-----------------------------+
+
